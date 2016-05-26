@@ -1,2 +1,2 @@
 # Zend-studies
-estou estudando o zend framework a cargo de mais conhecimentos.
+I am studying the zend framework in charge of more knowledge.
