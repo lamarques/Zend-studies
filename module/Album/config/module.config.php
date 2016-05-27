@@ -2,23 +2,24 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Album\Controller\Album' => 'Album\Controller\AlbumController',
-        ),
+            'Album\Controller\Album' => 'Album\Controller\AlbumController'
+        )
     ),
     'router' => array(
         'routes' => array(
             'album' => array(
-                'type'    => 'Literal',
+                'type' => 'segment',
                 'options' => array(
                     // Change this to something specific to your module
-                    'route'    => '/album',
-                    'defaults' => array(
-                        // Change this value to reflect the namespace in which
-                        // the controllers for your module are found
-                        '__NAMESPACE__' => 'Album\Controller',
-                        'controller'    => 'Album',
-                        'action'        => 'index',
+                    'route' => '/album[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
                     ),
+                    'defaults' => array(
+                        'controller' => 'Album\Controller\Album',
+                        'action' => 'index'
+                    )
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
@@ -27,24 +28,23 @@ return array(
                     // you may want to remove it and replace it with more
                     // specific routes.
                     'default' => array(
-                        'type'    => 'Segment',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route' => '/[:controller[/:action]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
                             ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
+                            'defaults' => array()
+                        )
+                    )
+                )
+            )
+        )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
-            'Album' => __DIR__ . '/../view',
-        ),
-    ),
+            'Album' => __DIR__ . '/../view'
+        )
+    )
 );
