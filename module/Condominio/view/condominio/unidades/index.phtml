@@ -1,0 +1,32 @@
+<strong>Module:</strong>        Condominio &raquo;
+<strong>Controller:</strong>    Unidades &raquo;
+<strong>Action:</strong>        index
+<div>
+    <h2>Unidades</h2>
+    <div class="ferramentas">
+        <a href="<?php echo $this->url('condominio') ?>/unidades/add/">Adicionar</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>Unidade</td>
+            <td>Ações</td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->dados as $dado): ?>
+        <tr>
+            <td><?php echo $dado->getIdUnidades(); ?></td>
+            <td>
+            	<?php echo $dado->getUnidade(); ?>
+			</td>
+            <td>
+            	<a href="<?php echo $this->url('condominio') ?>/unidades/editar/<?php echo $dado->getIdUnidades(); ?>">Editar</a>
+            	<a href="<?php echo $this->url('condominio') ?>/unidades/apagar/<?php echo $dado->getIdUnidades(); ?>" class="apagar">Apagar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
