@@ -1,1 +1,38 @@
-add
+<?php
+$title = 'Nova Unidade';
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+echo "<p>" . $this->url('condominio', array('controller' => 'unidades', 'action' => 'add')) . "</p>";
+$form->setAttribute('action', '');
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id_unidades'));
+?>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('unidade'));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('vagas'));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('local'));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php echo $this->formRow($form->get('ocupado')); ?> <?php echo $this->formRow($form->get('alugado')); ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formSubmit($form->get('salvar'));
+        ?>
+    </div>
+<?php
+echo $this->form()->closeTag();
