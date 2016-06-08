@@ -1,0 +1,38 @@
+<?php
+$title = 'Edição de Unidade';
+$this->headTitle($title);
+?>
+    <h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+$form->setAttribute('action', $this->url('unidades', array('action' => 'edit', 'id' => $this->dados->getIdUnidades() )));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id_unidades')->setValue($this->dados->getIdUnidades()));
+?>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('unidade')->setValue($this->dados->getUnidade()));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('vagas')->setValue($this->dados->getVagas()));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formRow($form->get('local')->setValue($this->dados->getLocal()));
+        ?>
+    </div>
+    <div class="form-group">
+        <?php echo $this->formRow($form->get('ocupado')->setValue($this->dados->getOcupado())); ?> 
+        <?php echo $this->formRow($form->get('alugado')->setValue($this->dados->getAlugado())); ?>
+    </div>
+    <div class="form-group">
+        <?php
+        echo $this->formSubmit($form->get('salvar'));
+        ?>
+    </div>
+<?php
+echo $this->form()->closeTag();

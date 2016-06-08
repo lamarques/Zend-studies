@@ -2,7 +2,6 @@
 namespace Condominio\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
@@ -41,6 +40,7 @@ class Unidades  implements InputFilterAwareInterface
 
 
     protected $inputFilter;
+    
     /**
      * @return integer
      */
@@ -78,7 +78,7 @@ class Unidades  implements InputFilterAwareInterface
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getVagas()
     {
@@ -86,7 +86,7 @@ class Unidades  implements InputFilterAwareInterface
     }
 
     /**
-     * @param integer $vagas
+     * @param int $vagas
      * @return Unidades
      */
     public function setVagas($vagas)
@@ -151,24 +151,25 @@ class Unidades  implements InputFilterAwareInterface
 
     public function exchangeArray($data)
     {
-        if(isset($data['id_unidades']) and  $data['id_unidades']){
+        if(isset($data['id_unidades']) and  (!empty($data['id_unidades']))){
             $this->setIdUnidades($data['id_unidades']);
         }
         if(isset($data['unidade'])) {
             $this->setUnidade($data['unidade']);
         }
-        if(isset($data['vagas'])){
+        if(isset($data['vagas']) and  (!empty($data['vagas']))){
             $this->setVagas($data['vagas']);
         }
-        if(isset($data['local'])){
-            $this->setVagas($data['local']);
+        if(isset($data['local']) and  (!empty($data['local']))){
+            $this->setLocal($data['local']);
         }
-        if (isset($data['ocupado'])){
+        if (isset($data['ocupado']) && $data['ocupado'] == true){
             $this->setOcupado(true);
         }
-        if (isset($data['alugado'])){
+        if (isset($data['alugado']) && $data['alugado'] == true){
             $this->setAlugado(true);
         }
+        return $this;
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
@@ -198,11 +199,23 @@ class Unidades  implements InputFilterAwareInterface
                 ),
                 'validators' => array(
                     array(
+                        'name' =>'NotEmpty',
+                        'options' => array(
+                            'messages' => array(
+                                \Zend\Validator\NotEmpty::IS_EMPTY => 'Identifique a unidade'
+                            ),
+                        ),
+                    ),
+                    array(
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
+                            'min'      => 2,
                             'max'      => 45,
+                            'messages' => array(
+                                \Zend\Validator\StringLength::TOO_SHORT => 'Campo deve ter um mínimo de 2 caracteres',
+                                \Zend\Validator\StringLength::TOO_LONG => 'Campo com limite de 45 caracteres'
+                            ),
                         ),
                     ),
                 ),
@@ -220,6 +233,9 @@ class Unidades  implements InputFilterAwareInterface
                         'options' => array(
                             'min'      => 1,
                             'max'      => 2,
+                            'messages' => array(
+                                \Zend\Validator\Between::NOT_BETWEEN => 'Preencha com 1 ou 2 vagas'
+                            ),
                         ),
                     ),
                 ),
@@ -235,11 +251,23 @@ class Unidades  implements InputFilterAwareInterface
                 ),
                 'validators' => array(
                     array(
+                        'name' =>'NotEmpty',
+                        'options' => array(
+                            'messages' => array(
+                                \Zend\Validator\NotEmpty::IS_EMPTY => 'Digite o local dessa unidade.'
+                            ),
+                        ),
+                    ),
+                    array(
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
+                            'min'      => 5,
                             'max'      => 255,
+                            'messages' => array(
+                                \Zend\Validator\StringLength::TOO_SHORT => 'Campo deve ter um mínimo de 5 caracteres',
+                                \Zend\Validator\StringLength::TOO_LONG  => 'Campo com limite de 255 caracteres'
+                            ),
                         ),
                     ),
                 ),
@@ -266,6 +294,4 @@ class Unidades  implements InputFilterAwareInterface
 
         return $this->inputFilter;
     }
-
-
 }

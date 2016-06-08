@@ -1,6 +1,3 @@
-<strong>Module:</strong>        Condominio &raquo;
-<strong>Controller:</strong>    Unidades &raquo;
-<strong>Action:</strong>        index
 <div>
     <h2>Unidades</h2>
     <div class="ferramentas">
@@ -22,11 +19,22 @@
             	<?php echo $dado->getUnidade(); ?>
 			</td>
             <td>
-            	<a href="<?php echo $this->url('condominio') ?>/unidades/editar/<?php echo $dado->getIdUnidades(); ?>">Editar</a>
-            	<a href="<?php echo $this->url('condominio') ?>/unidades/apagar/<?php echo $dado->getIdUnidades(); ?>" class="apagar">Apagar</a>
+            	<a href="<?php echo $this->url('condominio') ?>/unidades/edit/<?php echo $dado->getIdUnidades(); ?>">Editar</a>
+            	<a href="<?php echo $this->url('condominio') ?>/unidades/delete/<?php echo $dado->getIdUnidades(); ?>" class="apagar">Apagar</a>
             </td>
         </tr>
         <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".apagar").click(function(){
+		if(confirm('Tem certeza?')){
+			return true;
+		} else {
+			return false;
+		}
+	});
+});
+</script>

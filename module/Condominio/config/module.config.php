@@ -38,10 +38,11 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/[:controller[/:action]]',
+                            'route' => '/[:controller[/:action]][/]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                
                             ),
                             'defaults' => array()
                         )
@@ -57,6 +58,20 @@ return array(
                         'action' => 'index'
                     )
                 )
+            ),
+            'unidades' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route' => '/condominio/unidades/:action[/:id][/]',
+                    'constraints' => array(
+                        'action'  => '[a-zA-Z0-9_-]*',
+                        'id'      => '[a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'condominio\Controller\unidades',
+                        'action'     => 'index',
+                    ),
+                ),
             ),
         )
     ),
@@ -80,6 +95,9 @@ return array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory'
+        ),
+        'factories' => array(
+            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory'
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator'
