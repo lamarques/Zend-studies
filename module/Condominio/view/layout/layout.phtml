@@ -1,10 +1,9 @@
 <?php echo $this->doctype(); ?>
 
-<html lang="en">
+<html lang="pt-br">
 <head>
 <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false)?>
-
+        <?php echo $this->headTitle()?>
         <?php
         
 echo $this->headMeta()
@@ -19,23 +18,19 @@ echo $this->headLink(array(
             'type' => 'image/vnd.microsoft.icon',
             'href' => $this->basePath() . '/img/favicon.ico'
         ))
-            ->prependStylesheet($this->basePath('css/style.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))?>
+//             ->prependStylesheet($this->basePath('css/style.css'))
+//             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+//             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
 
-        <!-- Scripts -->
-        <?php
+            ->prependStylesheet($this->basePath('vendors/bootstrap/dist/css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('vendors/font-awesome/css/font-awesome.min.css'))
+            ->prependStylesheet($this->basePath('css/vendors/iCheck/skins/flat/green.css'))
+            ->prependStylesheet($this->basePath('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css'))
+            ->prependStylesheet($this->basePath('css/maps/jquery-jvectormap-2.0.3.css'))
+            ->prependStylesheet($this->basePath('build/css/custom.min.css'))
+?>
+
         
-echo $this->headScript()
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array(
-            'conditional' => 'lt IE 9'
-        ))
-            ->prependFile($this->basePath('js/html5shiv.js'), 'text/javascript', array(
-            'conditional' => 'lt IE 9'
-        ));
-        ?>
 
     </head>
 <body>
@@ -72,4 +67,17 @@ echo $this->headScript()
 	<!-- /container -->
         <?php echo $this->inlineScript()?>
     </body>
+    <!-- Scripts -->
+        <?php
+        
+echo $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery.min.js'))
+            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array(
+            'conditional' => 'lt IE 9'
+        ))
+            ->prependFile($this->basePath('js/html5shiv.js'), 'text/javascript', array(
+            'conditional' => 'lt IE 9'
+        ))->prependFile($this->basePath('js/custom.min.js'));
+        ?>
 </html>

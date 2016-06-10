@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 05-Jun-2016 às 23:42
+-- Generation Time: 08-Jun-2016 às 20:43
 -- Versão do servidor: 5.7.12
 -- PHP Version: 7.0.7RC1
 
@@ -40,8 +40,8 @@ CREATE TABLE `unidades` (
 --
 
 INSERT INTO `unidades` (`id_unidades`, `unidade`, `vagas`, `local`, `ocupado`, `alugado`) VALUES
-(1, 'ap1', 1, 'teste de ap', 1, 0),
-(2, 'ap2', 1, 'teste de ap', 1, 0);
+(2, 'ap2', 1, 'teste de ap', 1, 0),
+(3, 'ap3', 2, 'teste', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,7 +89,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `unidades`
 --
 ALTER TABLE `unidades`
-  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
